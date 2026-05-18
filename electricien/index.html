@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Électricité Bordelaise – Rénovation & Installation</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --blue: #1a3a5c;
+    --orange: #e85d04;
+    --orange-light: #f48c06;
+    --white: #f8f9fa;
+    --grey: #8a9ab0;
+    --light: #eef2f7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 60px;
+    background: rgba(13,27,42,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(232,93,4,0.15);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .logo-bolt {
+    width: 36px; height: 36px;
+    background: var(--orange);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .logo-bolt svg { width: 20px; fill: white; }
+
+  .logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: var(--white);
+    line-height: 1.1;
+  }
+
+  .logo-text span { color: var(--orange); }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 36px;
+  }
+
+  nav ul a {
+    color: var(--grey);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color .25s;
+  }
+
+  nav ul a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--orange);
+    color: white !important;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    letter-spacing: 0.3px !important;
+    transition: background .25s !important;
+  }
+
+  .nav-cta:hover { background: var(--orange-light) !important; color: white !important; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 680px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    background: url('comionette.png') center/cover no-repeat;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      rgba(13,27,42,0.92) 0%,
+      rgba(13,27,42,0.72) 50%,
+      rgba(13,27,42,0.3) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 60px 90px;
+    max-width: 680px;
+    animation: fadeUp .9s ease both;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(232,93,4,0.15);
+    border: 1px solid rgba(232,93,4,0.4);
+    color: var(--orange-light);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--orange);
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 7vw, 96px);
+    line-height: 0.95;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+
+  h1 span { color: var(--orange); }
+
+  .hero-desc {
+    font-size: 17px;
+    line-height: 1.7;
+    color: rgba(248,249,250,0.75);
+    max-width: 480px;
+    margin-bottom: 40px;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--orange);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: background .25s, transform .2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); }
+
+  .btn-outline {
+    border: 1.5px solid rgba(248,249,250,0.3);
+    color: var(--white);
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 15px;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: border-color .25s, background .25s, transform .2s;
+    display: inline-block;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--white);
+    background: rgba(255,255,255,0.07);
+    transform: translateY(-2px);
+  }
+
+  .hero-stats {
+    position: absolute;
+    right: 60px;
+    bottom: 90px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    animation: fadeIn 1.2s ease both;
+  }
+
+  .stat {
+    text-align: right;
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: var(--orange);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--grey);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ── SERVICES ── */
+  .section { padding: 100px 60px; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: 1.5px;
+    line-height: 1;
+    margin-bottom: 60px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .service-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: background .3s, border-color .3s;
+    cursor: default;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 3px;
+    width: 0;
+    background: var(--orange);
+    transition: width .4s ease;
+  }
+
+  .service-card:hover { background: rgba(232,93,4,0.05); border-color: rgba(232,93,4,0.2); }
+  .service-card:hover::before { width: 100%; }
+
+  .service-icon {
+    width: 48px; height: 48px;
+    background: rgba(232,93,4,0.12);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    transition: background .3s;
+  }
+
+  .service-card:hover .service-icon { background: rgba(232,93,4,0.25); }
+
+  .service-icon svg { width: 24px; stroke: var(--orange); fill: none; stroke-width: 1.8; }
+
+  .service-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .service-card p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--grey);
+  }
+
+  /* ── RÉALISATIONS (photo band) ── */
+  .photos-section {
+    background: rgba(255,255,255,0.02);
+    padding: 100px 60px;
+  }
+
+  .photos-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 48px;
+  }
+
+  .photos-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-rows: 300px 300px;
+    gap: 8px;
+  }
+
+  .photo-item {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .photo-item.tall { grid-row: span 2; }
+
+  .photo-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .6s ease;
+    display: block;
+  }
+
+  .photo-item:hover img { transform: scale(1.05); }
+
+  .photo-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(13,27,42,0.7) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity .3s;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+  }
+
+  .photo-item:hover .photo-overlay { opacity: 1; }
+
+  .photo-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  /* ── ABOUT ── */
+  .about-section {
+    padding: 100px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-img-wrap {
+    position: relative;
+    height: 560px;
+  }
+
+  .about-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about-accent {
+    position: absolute;
+    bottom: -24px; right: -24px;
+    background: var(--orange);
+    color: white;
+    padding: 28px 32px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    line-height: 1;
+  }
+
+  .about-accent small {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-top: 4px;
+  }
+
+  .about-text h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 52px);
+    letter-spacing: 1.5px;
+    margin-bottom: 24px;
+    line-height: 1.05;
+  }
+
+  .about-text p {
+    color: var(--grey);
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  .about-list {
+    list-style: none;
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .about-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .about-list li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: rgba(232,93,4,0.15);
+    border: 1px solid var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23e85d04' stroke-width='2'%3E%3Cpolyline points='2,6 5,9 10,3'/%3E%3C/svg%3E");
+    background-size: 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    padding: 100px 60px;
+    background: linear-gradient(135deg, rgba(26,58,92,0.4) 0%, rgba(13,27,42,0) 100%);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-info h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 52px);
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    line-height: 1.05;
+  }
+
+  .contact-info p {
+    color: var(--grey);
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .contact-item-icon {
+    width: 44px; height: 44px;
+    background: rgba(232,93,4,0.12);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-item-icon svg { width: 20px; stroke: var(--orange); fill: none; stroke-width: 1.8; }
+
+  .contact-item-text strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .contact-item-text span {
+    font-size: 13px;
+    color: var(--grey);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+  .form-group label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white);
+    padding: 13px 16px;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    transition: border-color .25s, background .25s;
+    outline: none;
+    width: 100%;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--orange);
+    background: rgba(232,93,4,0.06);
+  }
+
+  .form-group select option { background: var(--navy); }
+
+  .form-group textarea { resize: vertical; min-height: 110px; }
+
+  .form-group.full { grid-column: 1 / -1; }
+
+  .btn-submit {
+    background: var(--orange);
+    color: white;
+    border: none;
+    padding: 15px 32px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: background .25s, transform .2s;
+    align-self: flex-start;
+    margin-top: 4px;
+  }
+
+  .btn-submit:hover { background: var(--orange-light); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 40px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-copy {
+    font-size: 13px;
+    color: var(--grey);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: var(--grey);
+    text-decoration: none;
+    transition: color .25s;
+  }
+
+  .footer-links a:hover { color: var(--white); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent);
+    margin: 0 60px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    nav ul { display: none; }
+    .section, .photos-section, .about-section, .contact-section { padding: 60px 24px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .photos-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .photo-item.tall { grid-row: span 1; }
+    .about-section { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero-stats { display: none; }
+    .hero-content { padding: 0 24px 60px; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+    .divider { margin: 0 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-bolt">
+      <svg viewBox="0 0 24 24"><polygon points="13,2 4.5,13.5 11,13.5 11,22 19.5,10.5 13,10.5"/></svg>
+    </div>
+    <div class="logo-text">ÉLECTRICITÉ<br><span>BORDELAISE</span></div>
+  </a>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#realisations">Réalisations</a></li>
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#contact" class="nav-cta">Devis gratuit</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Électricien certifié – Bordeaux</div>
+    <h1>RÉNOVATION<br>&amp; <span>INSTALLATION</span><br>ÉLECTRIQUE</h1>
+    <p class="hero-desc">Particuliers, professionnels et promoteurs : nous intervenons sur tous vos projets électriques avec rigueur, sécurité et expertise reconnue.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">Demander un devis</a>
+      <a href="#services" class="btn-outline">Nos prestations</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">15+</div>
+      <div class="stat-label">Années d'expérience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">850+</div>
+      <div class="stat-label">Chantiers réalisés</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Certifié Qualifelec</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="section-label">Ce que nous faisons</div>
+  <h2 class="section-title">NOS PRESTATIONS</h2>
+  <div class="services-grid">
+
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M13 2L4.5 13.5H11L11 22L19.5 10.5H13L13 2Z"/></svg>
+      </div>
+      <h3>Installation Électrique</h3>
+      <p>Câblage complet, tableau électrique, disjoncteurs, prises et interrupteurs pour constructions neuves et rénovations.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <h3>Domotique & Smart Home</h3>
+      <p>Pilotez votre éclairage, volets et chauffage depuis votre smartphone. Installation de solutions connectées KNX / Zigbee.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Mise aux Normes</h3>
+      <p>Diagnostic électrique NF C 15-100, mise en conformité de votre installation pour vente ou location.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </div>
+      <h3>Éclairage LED</h3>
+      <p>Conception et pose de solutions d'éclairage intérieur et extérieur basse consommation, spots encastrés, bandeau LED.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+      </div>
+      <h3>Rénovation Complète</h3>
+      <p>Refonte totale de l'installation électrique dans le cadre d'une rénovation : saignées, passages de câbles, tableau neuf.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+      </div>
+      <h3>Dépannage Urgent</h3>
+      <p>Intervention rapide en cas de panne, court-circuit ou disjoncteur qui saute. Disponible du lundi au samedi.</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RÉALISATIONS -->
+<section class="photos-section" id="realisations">
+  <div class="photos-header">
+    <div>
+      <div class="section-label">Nos chantiers</div>
+      <h2 class="section-title" style="margin-bottom:0">RÉALISATIONS</h2>
+    </div>
+    <a href="#contact" class="btn-outline">Nous contacter →</a>
+  </div>
+  <div class="photos-grid">
+    <div class="photo-item tall reveal">
+      <img src="comionette.png" alt="Chantier neuf Bordeaux">
+      <div class="photo-overlay"><span class="photo-label">Construction neuve</span></div>
+    </div>
+    <div class="photo-item reveal">
+      <img src="geste%20technique.png" alt="Câblage tableau">
+      <div class="photo-overlay"><span class="photo-label">Tableau électrique</span></div>
+    </div>
+    <div class="photo-item reveal">
+      <img src="modernite%20smartphone%20qui%20controle%20lumiere.png" alt="Domotique">
+      <div class="photo-overlay"><span class="photo-label">Domotique</span></div>
+    </div>
+    <div class="photo-item reveal">
+      <img src="tableau%20elec.png" alt="Tableau électrique">
+      <div class="photo-overlay"><span class="photo-label">Installation complète</span></div>
+    </div>
+    <div class="photo-item reveal">
+      <img src="hero.png" alt="Électricien expert">
+      <div class="photo-overlay"><span class="photo-label">Expertise terrain</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-img-wrap reveal">
+    <img src="hero.png" alt="Électricien Bordelais">
+    <div class="about-accent">
+      15<small>ans d'expérience</small>
+    </div>
+  </div>
+  <div class="about-text reveal">
+    <div class="section-label">À propos</div>
+    <h2>UN ÉLECTRICIEN<br>DE CONFIANCE<br><span style="color:var(--orange)">À BORDEAUX</span></h2>
+    <p>Fondée il y a plus de 15 ans, Électricité Bordelaise est une entreprise familiale spécialisée dans l'installation et la rénovation électrique pour particuliers et professionnels dans la métropole bordelaise.</p>
+    <p>Notre équipe de techniciens qualifiés intervient avec rigueur sur chaque chantier, du diagnostic initial à la mise en service, en respectant scrupuleusement les normes NF C 15-100.</p>
+    <ul class="about-list">
+      <li>Certification Qualifelec RGE</li>
+      <li>Devis gratuit sous 48h</li>
+      <li>Garantie décennale</li>
+      <li>Interventions sur Bordeaux et sa métropole</li>
+      <li>Travaux en site occupé</li>
+    </ul>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <div class="section-label">Nous contacter</div>
+      <h2>DEMANDEZ VOTRE<br><span style="color:var(--orange)">DEVIS GRATUIT</span></h2>
+      <p>Nous vous répondons sous 24h et déplaçons un technicien pour évaluer vos besoins sans engagement.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.09 4.18 2 2 0 015.07 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 9.91a16 16 0 006.9 6.9l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <strong>05.56.XX.XX.XX</strong>
+            <span>Lun – Sam, 8h – 18h</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <strong>contact@elec-bordeaux.fr</strong>
+            <span>Réponse sous 24h</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <strong>Bordeaux Métropole</strong>
+            <span>Mérignac, Pessac, Talence, Bègles…</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Prénom</label>
+          <input type="text" placeholder="Jean" required>
+        </div>
+        <div class="form-group">
+          <label>Nom</label>
+          <input type="text" placeholder="Dupont" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Téléphone</label>
+          <input type="tel" placeholder="06 00 00 00 00">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="jean@email.com" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Type de projet</label>
+        <select>
+          <option value="">Sélectionnez...</option>
+          <option>Installation neuve</option>
+          <option>Rénovation électrique</option>
+          <option>Mise aux normes</option>
+          <option>Domotique / Smart Home</option>
+          <option>Éclairage LED</option>
+          <option>Dépannage urgent</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Votre message</label>
+        <textarea placeholder="Décrivez votre projet, la surface, vos contraintes..." required></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Envoyer ma demande →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2025 Électricité Bordelaise – Tous droits réservés</div>
+  <div class="footer-links">
+    <a href="#">Mentions légales</a>
+    <a href="#">Politique de confidentialité</a>
+    <a href="#">www.elec-bordeaux.fr</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => obs.observe(el));
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-submit');
+    btn.textContent = '✓ Message envoyé !';
+    btn.style.background = '#2ecc71';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Envoyer ma demande →';
+      btn.style.background = '';
+      btn.disabled = false;
+      e.target.reset();
+    }, 3500);
+  }
+</script>
+</body>
+</html>

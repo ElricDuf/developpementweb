@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pierre & Geste — Maître Tailleur de Pierre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --stone-deep: #1a1612;
+    --stone-dark: #2c2520;
+    --stone-mid: #4a3f35;
+    --stone-warm: #7a6a5a;
+    --stone-light: #b8a898;
+    --stone-pale: #e8ddd0;
+    --stone-cream: #f5f0e8;
+    --gold: #c9a96e;
+    --gold-light: #e0c48a;
+    --white: #faf7f2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--stone-deep);
+    color: var(--stone-pale);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ─── GRAIN OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 4rem;
+    background: linear-gradient(to bottom, rgba(26,22,18,0.95) 0%, transparent 100%);
+    transition: background 0.4s;
+  }
+
+  nav.scrolled {
+    background: rgba(26,22,18,0.97);
+    padding: 1.2rem 4rem;
+    border-bottom: 1px solid rgba(201,169,110,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone-light);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ─── HERO ─── */
+  #hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(160deg, rgba(26,22,18,0.3) 0%, rgba(26,22,18,0.7) 60%, rgba(26,22,18,0.95) 100%),
+      /* Simulated stone texture */
+      radial-gradient(ellipse at 30% 40%, #6b5a48 0%, #3d3028 35%, #1a1612 70%);
+    background-size: cover;
+  }
+
+  /* Stone dust light ray simulation */
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      conic-gradient(from 200deg at 25% 35%, transparent 0deg, rgba(201,169,110,0.08) 15deg, transparent 30deg),
+      conic-gradient(from 195deg at 30% 30%, transparent 0deg, rgba(201,169,110,0.05) 20deg, transparent 40deg);
+  }
+
+  /* Placeholder for hero image */
+  .hero-img-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.65;
+    filter: contrast(1.1) saturate(0.75) brightness(0.85);
+  }
+
+  .hero-img-placeholder svg {
+    width: 100%;
+    height: 100%;
+    opacity: 0.12;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 6rem 8rem;
+    max-width: 750px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 2rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--stone-pale);
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--stone-light);
+    max-width: 480px;
+    margin-bottom: 3rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.1rem 2.5rem;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold);
+    transform: translateX(-100%);
+    transition: transform 0.4s;
+  }
+
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary:hover { color: var(--stone-deep); }
+  .btn-primary span { position: relative; }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 3rem;
+    right: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--stone-warm);
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+
+  /* ─── SECTIONS COMMON ─── */
+  section { position: relative; }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+  }
+
+  /* ─── INTRO STRIP ─── */
+  #intro {
+    background: var(--stone-dark);
+    padding: 7rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: center;
+    border-bottom: 1px solid rgba(201,169,110,0.1);
+  }
+
+  .intro-left h2 {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 2rem;
+  }
+
+  .intro-left h2 em { color: var(--gold-light); }
+
+  .intro-right p {
+    font-size: 1rem;
+    line-height: 2;
+    color: var(--stone-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(201,169,110,0.15);
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone-warm);
+  }
+
+  /* ─── SAVOIR-FAIRE ─── */
+  #savoir-faire {
+    padding: 8rem 0;
+    background: var(--stone-deep);
+  }
+
+  .sf-header {
+    padding: 0 6rem;
+    margin-bottom: 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    gap: 4rem;
+  }
+
+  .sf-header h2 {
+    font-size: clamp(2.8rem, 4.5vw, 4.5rem);
+    color: var(--white);
+    line-height: 1.1;
+  }
+
+  .sf-header p {
+    color: var(--stone-light);
+    line-height: 1.9;
+    font-size: 0.95rem;
+  }
+
+  .sf-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .sf-card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: var(--stone-dark);
+    cursor: pointer;
+  }
+
+  .sf-card.wide { grid-column: span 1; aspect-ratio: 4/3; }
+
+  .sf-card-bg {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.6s ease;
+  }
+
+  .sf-card:hover .sf-card-bg { transform: scale(1.05); }
+
+  /* Stone texture cards */
+  .sf-card:nth-child(1) .sf-card-bg {
+    background: radial-gradient(ellipse at 40% 60%, #5a4a3a 0%, #2c2218 60%, #1a1410 100%);
+  }
+  .sf-card:nth-child(2) .sf-card-bg {
+    background: radial-gradient(ellipse at 60% 40%, #4a3f35 0%, #2a2018 55%, #16120e 100%);
+  }
+  .sf-card:nth-child(3) .sf-card-bg {
+    background: radial-gradient(ellipse at 30% 70%, #6a5848 0%, #3a2e24 50%, #1e1a16 100%);
+  }
+
+  .sf-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,8,5,0.98) 0%, rgba(10,8,5,0.55) 40%, rgba(10,8,5,0.1) 70%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2.5rem;
+    transition: opacity 0.3s;
+  }
+
+  .sf-card-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: rgba(201,169,110,0.2);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .sf-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .sf-card-desc {
+    font-size: 0.8rem;
+    color: var(--stone-light);
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s;
+  }
+
+  .sf-card:hover .sf-card-desc {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* SVG Illustrations for cards */
+  .sf-card-svg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+  }
+
+  .sf-card-svg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.7) brightness(0.75) contrast(1.05);
+    transition: transform 0.6s ease, filter 0.4s ease;
+  }
+
+  .sf-card:hover .sf-card-svg img {
+    transform: scale(1.05);
+    filter: saturate(0.85) brightness(0.85) contrast(1.05);
+  }
+
+  /* ─── PORTFOLIO ─── */
+  #portfolio {
+    padding: 8rem 6rem;
+    background: var(--stone-dark);
+  }
+
+  .portfolio-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .portfolio-header h2 {
+    font-size: clamp(2.8rem, 4.5vw, 4.5rem);
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .portfolio-header p {
+    color: var(--stone-warm);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+  }
+
+  .portfolio-filter {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: transparent;
+    border: 1px solid rgba(201,169,110,0.2);
+    color: var(--stone-warm);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--stone-deep);
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 300px 300px;
+    gap: 3px;
+  }
+
+  .port-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .port-item:nth-child(1) { grid-column: span 5; }
+  .port-item:nth-child(2) { grid-column: span 7; }
+  .port-item:nth-child(3) { grid-column: span 4; }
+  .port-item:nth-child(4) { grid-column: span 4; }
+  .port-item:nth-child(5) { grid-column: span 4; }
+
+  .port-bg {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.7s ease;
+  }
+
+  .port-item:hover .port-bg { transform: scale(1.08); }
+
+  .port-item:nth-child(1) .port-bg { background: linear-gradient(135deg, #4a3828 0%, #2a2018 50%, #1a1410 100%); }
+  .port-item:nth-child(2) .port-bg { background: linear-gradient(225deg, #5a4838 0%, #352a20 50%, #1c1810 100%); }
+  .port-item:nth-child(3) .port-bg { background: linear-gradient(45deg, #3a3028 0%, #252018 50%, #181410 100%); }
+  .port-item:nth-child(4) .port-bg { background: linear-gradient(315deg, #4a4030 0%, #302820 50%, #1e1a12 100%); }
+  .port-item:nth-child(5) .port-bg { background: linear-gradient(180deg, #423520 0%, #2a2216 50%, #181410 100%); }
+
+  .port-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,8,5,0.98) 0%, rgba(10,8,5,0.5) 40%, rgba(10,8,5,0.1) 70%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+    transform: translateY(0);
+    transition: transform 0.4s;
+  }
+
+  .port-item:hover .port-overlay { transform: translateY(0); }
+
+  .port-cat {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .port-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    font-weight: 300;
+  }
+
+  /* Portfolio icon illustrations */
+  .port-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+  }
+
+  .port-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.7) brightness(0.7) contrast(1.05);
+    transition: transform 0.7s ease, filter 0.4s ease;
+  }
+
+  .port-item:hover .port-icon img {
+    transform: scale(1.08);
+    filter: saturate(0.85) brightness(0.8) contrast(1.05);
+  }
+
+  /* ─── ABOUT ─── */
+  #about {
+    background: var(--stone-deep);
+    padding: 8rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: center;
+  }
+
+  .about-portrait {
+    position: relative;
+  }
+
+  .portrait-frame {
+    position: relative;
+    aspect-ratio: 3/4;
+    max-width: 420px;
+    background: var(--stone-mid);
+    overflow: hidden;
+  }
+
+  .portrait-frame::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border: 1px solid rgba(201,169,110,0.3);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .portrait-frame::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(201,169,110,0.15);
+    z-index: 0;
+  }
+
+  .portrait-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--stone-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .portrait-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: saturate(0.85) contrast(1.05);
+  }
+
+  .portrait-placeholder svg { opacity: 0.25; }
+
+  .portrait-badge {
+    position: absolute;
+    bottom: -1rem;
+    left: -1.5rem;
+    background: var(--gold);
+    color: var(--stone-deep);
+    padding: 1.2rem 1.8rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    z-index: 3;
+  }
+
+  .portrait-badge span {
+    display: block;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 300;
+    margin-top: 0.2rem;
+  }
+
+  .about-content h2 {
+    font-size: clamp(2.5rem, 3.5vw, 3.8rem);
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 2rem;
+  }
+
+  .about-content h2 em { color: var(--gold-light); }
+
+  .about-content p {
+    color: var(--stone-light);
+    line-height: 2;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-credentials {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .credential {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.2rem;
+    border-left: 1px solid rgba(201,169,110,0.25);
+  }
+
+  .cred-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    color: var(--gold);
+    margin-top: 0.2rem;
+  }
+
+  .cred-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 0.2rem;
+  }
+
+  .cred-desc {
+    font-size: 0.8rem;
+    color: var(--stone-warm);
+    line-height: 1.6;
+  }
+
+  /* ─── SERVICES ─── */
+  #services {
+    background: var(--stone-dark);
+    padding: 8rem 6rem;
+  }
+
+  .services-header {
+    margin-bottom: 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+  }
+
+  .services-header h2 {
+    font-size: clamp(2.8rem, 4vw, 4rem);
+    color: var(--white);
+    line-height: 1.1;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 5rem;
+  }
+
+  .service-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(201,169,110,0.1);
+    padding: 3rem 2.5rem;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+
+  .service-card:hover { background: rgba(201,169,110,0.04); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    font-weight: 300;
+    color: rgba(201,169,110,0.1);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .service-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    color: var(--white);
+    margin-bottom: 1rem;
+    font-weight: 300;
+  }
+
+  .service-desc {
+    font-size: 0.85rem;
+    color: var(--stone-warm);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .service-list li {
+    font-size: 0.8rem;
+    color: var(--stone-light);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .service-list li::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* Devis Banner */
+  .devis-banner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 3rem;
+    padding: 3rem 4rem;
+    background: var(--stone-mid);
+    border: 1px solid rgba(201,169,110,0.2);
+  }
+
+  .devis-text h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .devis-text p {
+    font-size: 0.85rem;
+    color: var(--stone-light);
+  }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    background: var(--stone-deep);
+    padding: 8rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+  }
+
+  .contact-left h2 {
+    font-size: clamp(2.5rem, 3.5vw, 3.8rem);
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-left p {
+    color: var(--stone-light);
+    line-height: 1.9;
+    font-size: 0.95rem;
+    margin-bottom: 3rem;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .contact-icon {
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(201,169,110,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+
+  .contact-detail-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone-warm);
+    margin-bottom: 0.3rem;
+  }
+
+  .contact-detail-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+  }
+
+  /* Form */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone-warm);
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,169,110,0.15);
+    color: var(--stone-pale);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    padding: 1rem 1.2rem;
+    outline: none;
+    transition: border-color 0.3s;
+    width: 100%;
+    resize: none;
+  }
+
+  .form-group select option { background: var(--stone-dark); }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: rgba(201,169,110,0.5);
+  }
+
+  .form-group textarea { height: 120px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--stone-dark);
+    border-top: 1px solid rgba(201,169,110,0.1);
+    padding: 3rem 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: var(--gold);
+    letter-spacing: 0.25em;
+  }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: var(--stone-warm);
+    letter-spacing: 0.1em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--stone-warm);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ─── DIVIDER ─── */
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 3rem 0;
+  }
+
+  .ornament-line {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,169,110,0.4));
+  }
+
+  .ornament-line.right {
+    background: linear-gradient(to left, transparent, rgba(201,169,110,0.4));
+  }
+
+  .ornament-diamond {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1.5rem 2rem; }
+    nav.scrolled { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+
+    .hero-content { padding: 0 2rem 5rem; }
+    h1 { font-size: 3rem; }
+
+    #intro { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 3rem; }
+    .stat-row { grid-template-columns: repeat(3, 1fr); }
+
+    .sf-header { grid-template-columns: 1fr; padding: 0 2rem; }
+    .sf-grid { grid-template-columns: 1fr; }
+    .sf-card.wide { grid-column: span 1; aspect-ratio: 4/3; }
+
+    #portfolio { padding: 5rem 2rem; }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .port-item { grid-column: span 1 !important; aspect-ratio: 4/3; }
+
+    #about { grid-template-columns: 1fr; padding: 5rem 2rem; gap: 4rem; }
+    .portrait-frame { max-width: 100%; }
+
+    #services { padding: 5rem 2rem; }
+    .services-header { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .devis-banner { grid-template-columns: 1fr; padding: 2rem; }
+
+    #contact { grid-template-columns: 1fr; padding: 5rem 2rem; gap: 3rem; }
+    .form-row { grid-template-columns: 1fr; }
+
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2.5rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav id="mainNav">
+  <a href="#hero" class="nav-logo">Pierre & Geste</a>
+  <ul class="nav-links">
+    <li><a href="#savoir-faire">Savoir-Faire</a></li>
+    <li><a href="#portfolio">Réalisations</a></li>
+    <li><a href="#about">À Propos</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-bg">
+    <!-- Hero image placeholder: artisan en action, lumière rasante sur pierre -->
+    <div class="hero-img-placeholder">
+      <img src="./hero.png" alt="Artisan tailleur de pierre au travail">
+    </div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Maître Tailleur de Pierre</div>
+    <h1>L'Art de la<br><em>Pierre Vivante</em></h1>
+    <p class="hero-desc">Façonner la matière, révéler l'âme de la pierre. Un savoir-faire transmis depuis trois générations, au service de vos projets d'architecture et de décoration.</p>
+    <a href="#portfolio" class="btn-primary"><span>Découvrir les réalisations</span></a>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Défiler</span>
+  </div>
+</section>
+
+<!-- ─── INTRO ─── -->
+<section id="intro">
+  <div class="intro-left reveal">
+    <div class="section-label">L'atelier</div>
+    <h2>La pierre comme<br><em>langage</em></h2>
+    <div class="stat-row">
+      <div class="stat-item">
+        <span class="stat-num">25</span>
+        <span class="stat-label">Années d'expérience</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">300+</span>
+        <span class="stat-label">Chantiers réalisés</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">12</span>
+        <span class="stat-label">Types de pierres maîtrisés</span>
+      </div>
+    </div>
+  </div>
+  <div class="intro-right reveal reveal-delay-2">
+    <p>Chaque bloc de pierre porte en lui une histoire géologique de millions d'années. Mon travail consiste à dialoguer avec cette matière unique — en lire les veines, en respecter la structure — pour en extraire des formes qui traverseront le temps.</p>
+    <p>De la restauration d'un chapiteau médiéval à la conception d'une cheminée contemporaine, chaque projet est traité avec la même exigence : celle de l'artisan qui sait que son travail durera des siècles.</p>
+  </div>
+</section>
+
+<!-- ─── SAVOIR-FAIRE ─── -->
+<section id="savoir-faire">
+  <div class="sf-header">
+    <div class="reveal">
+      <div class="section-label">Techniques & Gestes</div>
+      <h2>Le savoir-<br>faire</h2>
+    </div>
+    <p class="reveal reveal-delay-2">De l'ébauchage à la sculpture fine, chaque geste est le fruit d'années de pratique. Les outils — ciseaux, gradines, bouchardes — deviennent des extensions naturelles de la main.</p>
+  </div>
+
+  <div class="sf-grid">
+    <!-- Card 1 : Les outils -->
+    <div class="sf-card reveal">
+      <div class="sf-card-bg"></div>
+      <div class="sf-card-svg">
+        <img src="./outils.png" alt="Outils de tailleur de pierre">
+      </div>
+      <div class="sf-card-overlay">
+        <div class="sf-card-num">01</div>
+        <div class="sf-card-title">Les Outils</div>
+        <p class="sf-card-desc">Ciseaux, massettes, gradines et pointolles — l'arsenal d'un artisan qui connaît chaque outil comme la paume de sa main.</p>
+      </div>
+    </div>
+
+    <!-- Card 2 : Le geste technique -->
+    <div class="sf-card reveal reveal-delay-1">
+      <div class="sf-card-bg"></div>
+      <div class="sf-card-svg">
+        <img src="./geste%20technique.png" alt="Geste technique de taille de pierre">
+      </div>
+      <div class="sf-card-overlay">
+        <div class="sf-card-num">02</div>
+        <div class="sf-card-title">Le Geste</div>
+        <p class="sf-card-desc">La précision naît de la maîtrise du corps entier. Chaque coup de maillet est mesuré, orienté, calculé pour préserver la matière et libérer la forme.</p>
+      </div>
+    </div>
+
+    <!-- Card 3 : L'atelier (wide) -->
+    <div class="sf-card wide reveal reveal-delay-2">
+      <div class="sf-card-bg" style="background: radial-gradient(ellipse at 30% 60%, #5a4830 0%, #2e2418 50%, #1a1410 100%)"></div>
+      <div class="sf-card-svg">
+        <img src="./l%20atelier.png" alt="Atelier de taille de pierre">
+      </div>
+      <div class="sf-card-overlay">
+        <div class="sf-card-num">03</div>
+        <div class="sf-card-title">L'Atelier</div>
+        <p class="sf-card-desc">Un espace entre le brut et le fini. D'un côté, les blocs à l'état naturel ; de l'autre, les pièces qui ont trouvé leur forme. Au centre, l'établi où tout se décide.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PORTFOLIO ─── -->
+<section id="portfolio">
+  <div class="portfolio-header reveal">
+    <div class="section-label" style="justify-content: center">Travaux Récents</div>
+    <h2>Les Réalisations</h2>
+    <p>De la restauration patrimoniale à la sculpture contemporaine</p>
+  </div>
+
+  <div class="portfolio-filter reveal">
+    <button class="filter-btn active" onclick="filterPortfolio('all', this)">Tous</button>
+    <button class="filter-btn" onclick="filterPortfolio('architecture', this)">Architecture</button>
+    <button class="filter-btn" onclick="filterPortfolio('decoration', this)">Décoration</button>
+    <button class="filter-btn" onclick="filterPortfolio('art', this)">Art & Sculpture</button>
+    <button class="filter-btn" onclick="filterPortfolio('exterieur', this)">Extérieur</button>
+  </div>
+
+  <div class="portfolio-grid" id="portfolioGrid">
+    <!-- Item 1 : Architecture -->
+    <div class="port-item reveal" data-cat="architecture">
+      <div class="port-bg"></div>
+      <div class="port-icon">
+        <img src="./bloc.png" alt="Bloc de pierre">
+      </div>
+      <div class="port-overlay">
+        <div class="port-cat">Architecture & Rénovation</div>
+        <div class="port-title">Encadrement de Fenêtre Restauré</div>
+      </div>
+    </div>
+
+    <!-- Item 2 : Décoration -->
+    <div class="port-item reveal reveal-delay-1" data-cat="decoration">
+      <div class="port-bg"></div>
+      <div class="port-icon">
+        <img src="./renov%20avant%20apres.png" alt="Rénovation avant après">
+      </div>
+      <div class="port-overlay">
+        <div class="port-cat">Décoration Intérieure</div>
+        <div class="port-title">Cheminée Monumentale en Calcaire</div>
+      </div>
+    </div>
+
+    <!-- Item 3 : Art -->
+    <div class="port-item reveal reveal-delay-2" data-cat="art">
+      <div class="port-bg"></div>
+      <div class="port-icon">
+        <img src="./sculpture.png" alt="Sculpture en pierre">
+      </div>
+      <div class="port-overlay">
+        <div class="port-cat">Art & Sculpture</div>
+        <div class="port-title">Volute et Ornements Sculptés</div>
+      </div>
+    </div>
+
+    <!-- Item 4 : Extérieur -->
+    <div class="port-item reveal reveal-delay-1" data-cat="exterieur">
+      <div class="port-bg"></div>
+      <div class="port-icon">
+        <img src="./jardin%20exterieur.png" alt="Aménagement extérieur en pierre">
+      </div>
+      <div class="port-overlay">
+        <div class="port-cat">Aménagement Extérieur</div>
+        <div class="port-title">Muret en Pierre Sèche & Terrasse</div>
+      </div>
+    </div>
+
+    <!-- Item 5 : Architecture 2 -->
+    <div class="port-item reveal reveal-delay-2" data-cat="architecture">
+      <div class="port-bg"></div>
+      <div class="port-icon">
+        <img src="./interrieur.png" alt="Aménagement intérieur en pierre">
+      </div>
+      <div class="port-overlay">
+        <div class="port-cat">Architecture</div>
+        <div class="port-title">Escalier Monumental en Pierre de Bourgogne</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+  <div class="about-portrait reveal">
+    <div class="portrait-frame">
+      <div class="portrait-placeholder">
+        <img src="./porttrait%20artisant.png" alt="Portrait de l’artisan tailleur de pierre">
+      </div>
+      <div class="portrait-badge">
+        Jean-Marc Aubert
+        <span>Maître Artisan · Tailleur de Pierre</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-content reveal reveal-delay-2">
+    <div class="section-label">L'Artisan</div>
+    <h2>Un métier,<br>une <em>passion</em>,<br>une vie</h2>
+    <p>Formé dès l'âge de 16 ans dans un compagnonnage du Tour de France, j'ai appris à lire la pierre avant de l'écrire. Vingt-cinq années sur les chantiers — cathédrales, demeures bourgeoises, jardins contemporains — ont aiguisé mon regard et ma main.</p>
+    <p>Chaque projet commence en carrière, où je sélectionne personnellement les blocs selon leur grain, leur couleur, leurs veines. Cette connaissance intime de la matière est ce qui distingue un artisan d'un exécutant.</p>
+
+    <div class="about-credentials">
+      <div class="credential">
+        <svg class="cred-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+        </svg>
+        <div>
+          <div class="cred-title">Meilleur Ouvrier de France</div>
+          <div class="cred-desc">Lauréat du concours MOF – Taille de Pierre, catégorie sculpture ornementale, 2008.</div>
+        </div>
+      </div>
+      <div class="credential">
+        <svg class="cred-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 21h18M9 8h1m5 0h1M9 12h1m5 0h1M9 16h1m5 0h1M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16"/>
+        </svg>
+        <div>
+          <div class="cred-title">Monuments Historiques Agréé</div>
+          <div class="cred-desc">Habilité à intervenir sur les bâtiments classés et inscrits au titre des monuments historiques.</div>
+        </div>
+      </div>
+      <div class="credential">
+        <svg class="cred-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        <div>
+          <div class="cred-title">Compagnon du Devoir</div>
+          <div class="cred-desc">Tour de France complet (2001–2004), formé dans les ateliers de Lyon, Bordeaux, Strasbourg et Paris.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section id="services">
+  <div class="services-header">
+    <div class="reveal">
+      <div class="section-label">Prestations</div>
+      <h2>Ce que je<br>peux faire<br>pour vous</h2>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <p style="color:var(--stone-light); line-height:1.9; font-size:0.95rem;">Chaque projet est précédé d'un échange en profondeur, d'un relevé de cotes et d'une étude de faisabilité. Des croquis et des épures sur papier viennent poser les bases avant que le premier outil ne touche la pierre.</p>
+    </div>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-num">01</span>
+      <div class="service-title">Restauration Patrimoniale</div>
+      <p class="service-desc">Remise en état de façades, de colonnes, d'encadrements, de corniches et d'éléments sculptés anciens, dans le respect des techniques d'origine.</p>
+      <ul class="service-list">
+        <li>Diagnostic pierre et relevé</li>
+        <li>Taille de remplacement à l'identique</li>
+        <li>Consolidation et jointoiement à la chaux</li>
+        <li>Monuments Historiques</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal reveal-delay-1">
+      <span class="service-num">02</span>
+      <div class="service-title">Architecture Neuve & Rénovation</div>
+      <p class="service-desc">Habillages de façade, escaliers, encadrements de baies, cheminées et dalles. Du projet sur mesure à la pose clé en main.</p>
+      <ul class="service-list">
+        <li>Étude et conception avec l'architecte</li>
+        <li>Taille et mise en œuvre</li>
+        <li>Escaliers et garde-corps</li>
+        <li>Cuisines et salles de bain en pierre</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2">
+      <span class="service-num">03</span>
+      <div class="service-title">Art, Sculpture & Aménagement</div>
+      <p class="service-desc">Sculptures ornementales, fontaines, puits, stèles, dalles funéraires et aménagements de jardins. La pierre au service de votre univers.</p>
+      <ul class="service-list">
+        <li>Sculptures figuratives et abstraites</li>
+        <li>Ornements et blasons</li>
+        <li>Dallage et murets de jardin</li>
+        <li>Mobilier en pierre</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="devis-banner reveal">
+    <div class="devis-text">
+      <h3>Votre projet mérite une étude personnalisée</h3>
+      <p>Contactez-moi pour un premier échange sans engagement — déplacement possible sur site.</p>
+    </div>
+    <a href="#contact" class="btn-primary"><span>Demander un devis</span></a>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+  <div class="contact-left reveal">
+    <div class="section-label">Contact</div>
+    <h2>Parlons de<br>votre projet</h2>
+    <p>Qu'il s'agisse d'une restauration urgente, d'un chantier neuf ou d'une simple question sur la pierre, je réponds personnellement à chaque demande dans les 48 heures.</p>
+
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="contact-detail-label">Téléphone</div>
+          <div class="contact-detail-val">+33 (0)6 12 34 56 78</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <div>
+          <div class="contact-detail-label">E-mail</div>
+          <div class="contact-detail-val">contact@pierre-et-geste.fr</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div>
+          <div class="contact-detail-label">Atelier</div>
+          <div class="contact-detail-val">12 Route des Carriers, 84400 Apt (Vaucluse)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form reveal reveal-delay-2">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nom</label>
+        <input type="text" placeholder="Votre nom">
+      </div>
+      <div class="form-group">
+        <label>Prénom</label>
+        <input type="text" placeholder="Votre prénom">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>E-mail</label>
+      <input type="email" placeholder="votre@email.fr">
+    </div>
+    <div class="form-group">
+      <label>Téléphone</label>
+      <input type="tel" placeholder="+33 6 …">
+    </div>
+    <div class="form-group">
+      <label>Type de projet</label>
+      <select>
+        <option value="">Sélectionner un type de projet</option>
+        <option>Restauration patrimoniale</option>
+        <option>Architecture neuve & rénovation</option>
+        <option>Décoration intérieure</option>
+        <option>Aménagement extérieur</option>
+        <option>Art & Sculpture</option>
+        <option>Autre</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Votre message</label>
+      <textarea placeholder="Décrivez votre projet, vos délais, votre localisation…"></textarea>
+    </div>
+    <button type="button" class="btn-primary" style="align-self:flex-start" onclick="handleSubmit(this)">
+      <span>Envoyer le message</span>
+    </button>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-logo">Pierre & Geste</div>
+  <span class="footer-copy">© 2025 – Jean-Marc Aubert, Maître Artisan Tailleur de Pierre</span>
+  <ul class="footer-links">
+    <li><a href="#">Mentions légales</a></li>
+    <li><a href="#">CGV</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  // ─── NAV SCROLL ───
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  // ─── REVEAL ON SCROLL ───
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // ─── PORTFOLIO FILTER ───
+  function filterPortfolio(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.port-item').forEach(item => {
+      const match = cat === 'all' || item.dataset.cat === cat;
+      item.style.opacity = match ? '1' : '0.2';
+      item.style.filter = match ? 'none' : 'grayscale(1)';
+      item.style.transition = 'opacity 0.4s, filter 0.4s';
+    });
+  }
+
+  // ─── FORM SUBMIT ───
+  function handleSubmit(btn) {
+    const original = btn.querySelector('span').textContent;
+    btn.querySelector('span').textContent = 'Message envoyé ✓';
+    btn.style.borderColor = '#6a9e6a';
+    btn.style.color = '#6a9e6a';
+    setTimeout(() => {
+      btn.querySelector('span').textContent = original;
+      btn.style.borderColor = '';
+      btn.style.color = '';
+    }, 3500);
+  }
+
+  // ─── SMOOTH INITIAL HERO REVEAL ───
+  window.addEventListener('load', () => {
+    const heroContent = document.querySelector('.hero-content');
+    heroContent.style.opacity = '0';
+    heroContent.style.transform = 'translateY(40px)';
+    heroContent.style.transition = 'opacity 1.2s ease 0.3s, transform 1.2s ease 0.3s';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        heroContent.style.opacity = '1';
+        heroContent.style.transform = 'translateY(0)';
+      });
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+:root{
+  --brand:#8b3a2f;
+  --accent:#d9b08c;
+  --bg:#fffdfa;
+  --text:#221f1f;
+  --muted:#6b6b6b;
+}
+/* Accessibility helpers */
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{position:static;width:auto;height:auto;padding:.5rem 1rem;background:var(--brand);color:#fff;border-radius:4px;margin:0.5rem}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.form-status{margin-top:0.5rem;color:var(--brand)}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+.wrap{max-width:1100px;margin:0 auto;padding:2rem}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Playfair Display',serif;margin:0;font-size:1.5rem;color:var(--brand)}
+.main-nav a{margin-left:1rem;color:var(--text);text-decoration:none;font-weight:600}
+.hero{position:relative}
+.hero img{width:100%;height:360px;object-fit:cover;display:block;filter:contrast(1.02) saturate(1.05)}
+.hero-text{position:absolute;left:1.5rem;bottom:1.5rem;color:#fff;background:linear-gradient(180deg,rgba(0,0,0,0.25),rgba(0,0,0,0.45));padding:1rem;border-radius:6px}
+.hero-text h2{margin:0;font-family:'Playfair Display',serif;font-size:1.75rem}
+
+.about{padding-top:2rem}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.about-grid img{width:100%;height:220px;object-fit:cover;border-radius:8px}
+
+.menu .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.card{background:#fff;padding:1rem;border-radius:8px;box-shadow:0 4px 18px rgba(0,0,0,0.06);text-align:center}
+.card img{width:100%;height:150px;object-fit:cover;border-radius:6px}
+.card h3{margin:0.5rem 0}
+
+.process-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.process-grid img{width:100%;height:180px;object-fit:cover;border-radius:6px}
+
+.team img{width:100%;height:240px;object-fit:cover;border-radius:8px}
+
+/* Hours panel image adjustments */
+.hours img{width:100%;height:auto;object-fit:cover;border-radius:8px;display:block;margin-bottom:0.5rem}
+.hours{display:flex;flex-direction:column;align-items:flex-start}
+
+.contact-grid{display:grid;grid-template-columns:1fr 320px;gap:2rem}
+form{display:flex;flex-direction:column}
+label{margin-top:0.5rem;font-weight:600}
+input,textarea{padding:0.6rem;border-radius:6px;border:1px solid #e6e6e6;margin-top:0.25rem}
+button{margin-top:0.75rem;padding:0.75rem;border-radius:6px;border:0;background:var(--brand);color:#fff;font-weight:600;cursor:pointer}
+
+.site-footer{background:#f6f4f2;padding:1rem 0;margin-top:2rem}
+.site-footer p{margin:0;text-align:center;color:var(--muted)}
+
+@media (max-width:800px){
+  .site-header .wrap{flex-direction:column;align-items:flex-start}
+  .hero img{height:220px}
+  .about-grid,.process-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+}
+
+/* Burger menu styles */
+.burger{display:none;background:transparent;border:0;cursor:pointer;padding:0.4rem}
+.burger-box{display:inline-block;width:28px;height:18px;position:relative}
+.burger-inner, .burger-inner::before, .burger-inner::after{display:block;background:var(--text);height:2px;border-radius:2px;position:absolute;left:0;right:0}
+.burger-inner{top:50%;transform:translateY(-50%)}
+.burger-inner::before{content:'';top:-8px}
+.burger-inner::after{content:'';top:8px}
+
+.mobile-nav{position:fixed;top:0;right:0;height:100%;width:80%;max-width:320px;background:#fff;box-shadow:-12px 0 40px rgba(0,0,0,0.12);transform:translateX(100%);transition:transform 240ms ease;display:flex;flex-direction:column;padding:3.5rem 1.25rem;z-index:1200}
+.mobile-nav a{padding:0.75rem 0;border-bottom:1px solid #f0f0f0;color:var(--text);text-decoration:none;font-weight:600}
+.mobile-nav.open{transform:translateX(0)}
+
+/* hide desktop nav on small screens, show burger */
+@media (max-width:800px){
+  .main-nav{display:none}
+  .burger{display:inline-block}
+}
+
+/* When mobile nav is open, prevent body scroll */
+body.nav-open{overflow:hidden}

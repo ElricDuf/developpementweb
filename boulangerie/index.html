@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Boulangerie du Coin</title>
+    <link href="styles.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <a class="skip-link" href="#maincontent">Passer au contenu</a>
+    <header class="site-header">
+      <div class="wrap">
+        <h1 class="logo">Boulangerie du Coin</h1>
+        <nav class="main-nav" aria-label="Navigation principale">
+          <a href="#about">À propos</a>
+          <a href="#menu">Menu</a>
+          <a href="#process">Notre savoir‑faire</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button class="burger" aria-label="Ouvrir le menu" aria-controls="mobileNav" aria-expanded="false">
+          <span class="burger-box"><span class="burger-inner"></span></span>
+        </button>
+      </div>
+      <div class="hero">
+        <img src="ambiance%20boulangerie.png" alt="Intérieur de la boulangerie" />
+        <div class="hero-text">
+          <h2>Pain artisanal, pâtisseries maison</h2>
+          <p>Des recettes traditionnelles, cuites chaque matin.</p>
+        </div>
+      </div>
+    </header>
+
+    <nav id="mobileNav" class="mobile-nav" aria-hidden="true" aria-label="Menu mobile">
+      <a href="#about">À propos</a>
+      <a href="#menu">Menu</a>
+      <a href="#process">Notre savoir‑faire</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <main id="maincontent" role="main">
+      <section id="about" class="wrap about">
+        <h2>Notre histoire</h2>
+        <p>La Boulangerie du Coin est une boulangerie artisanale fictive qui célèbre le goût et le savoir‑faire traditionnel. Nous utilisons de la farine de qualité et levains naturels pour des pains riches en saveurs.</p>
+        <div class="about-grid">
+          <img src="gros%20plan%20baguette%20tradition.png" alt="Gros plan baguette tradition" />
+          <img src="main%20qui%20petrissent.png" alt="Mains pétrissant la pâte" />
+        </div>
+      </section>
+
+      <section id="menu" class="wrap menu">
+        <h2>Nos spécialités</h2>
+        <div class="cards">
+          <article class="card">
+            <img src="baguette.png" alt="Baguette" />
+            <h3>Baguette tradition</h3>
+            <p>Croustillante à l'extérieur, moelleuse à l'intérieur.</p>
+          </article>
+          <article class="card">
+            <img src="pain%20au%20choc.png" alt="Pain au chocolat" />
+            <h3>Pain au chocolat</h3>
+            <p>Feuilletage beurré, cœur chocolaté.</p>
+          </article>
+          <article class="card">
+            <img src="chouquette.png" alt="Chouquette" />
+            <h3>Chouquette</h3>
+            <p>Légère et saupoudrée de sucre perlé.</p>
+          </article>
+          <article class="card">
+            <img src="sandwish.png" alt="Sandwich" />
+            <h3>Sandwichs maison</h3>
+            <p>Pains frais garnis avec soin.</p>
+          </article>
+          <article class="card">
+            <img src="tartellette%20fruit.png" alt="Tartelette aux fruits" />
+            <h3>Tartelette aux fruits</h3>
+            <p>Fruits frais et crème légère.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="process" class="wrap process">
+        <h2>Comment nous travaillons</h2>
+        <div class="process-grid">
+          <div>
+            <img src="pain%20qui%20cuit.png" alt="Pain qui cuit" />
+            <h4>Cuisson lente</h4>
+            <p>Nos pains cuisent lentement pour développer la croûte et les arômes.</p>
+          </div>
+          <div>
+            <img src="main%20qui%20petrissent.png" alt="Pétrissage" />
+            <h4>Pétrissage à la main</h4>
+            <p>Des gestes précis pour une mie harmonieuse.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="team" class="wrap team">
+        <h2>Notre équipe</h2>
+        <img src="photo%20enployes.png" alt="Photo des employés" />
+        <p>Une petite équipe passionnée, dédiée au bon pain.</p>
+      </section>
+
+      <section id="contact" class="wrap contact">
+        <h2>Contact & horaires</h2>
+        <div class="contact-grid">
+          <form id="contactForm">
+            <label for="name">Nom</label>
+            <input id="name" name="name" required />
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required />
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            <button type="submit">Envoyer</button>
+            <div id="formStatus" aria-live="polite" class="form-status" style="display:none"></div>
+          </form>
+          <div class="hours">
+            <img src="ardoise%20horaire.png" alt="Ardoise horaires" />
+            <p>Du mardi au dimanche — 7h00 à 19h00</p>
+            <p>Fermé le lundi</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>© Boulangerie du Coin — Site fictif</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
