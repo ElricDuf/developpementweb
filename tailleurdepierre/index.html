@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pierre & Geste — Maître Tailleur de Pierre</title>
+<link rel="preload" as="image" href="./hero.avif" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Jost:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -445,10 +446,18 @@
     opacity: 1;
   }
 
-  .sf-card-svg img {
+  /* Ensure picture and images fully cover their card containers */
+  picture { display: block; width: 100%; height: 100%; }
+  picture img,
+  .sf-card-svg img,
+  .port-icon img,
+  .portrait-placeholder img,
+  .hero-img-placeholder img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center center;
     filter: saturate(0.7) brightness(0.75) contrast(1.05);
     transition: transform 0.6s ease, filter 0.4s ease;
   }
@@ -1095,7 +1104,11 @@
   <div class="hero-bg">
     <!-- Hero image placeholder: artisan en action, lumière rasante sur pierre -->
     <div class="hero-img-placeholder">
-      <img src="./hero.png" alt="Artisan tailleur de pierre au travail">
+      <picture>
+        <source srcset="./hero.avif" type="image/avif">
+        <source srcset="./hero.webp" type="image/webp">
+        <img src="./hero.webp" alt="Artisan tailleur de pierre au travail" fetchpriority="high" width="1600" height="1000">
+      </picture>
     </div>
   </div>
   <div class="hero-content">
@@ -1152,7 +1165,11 @@
     <div class="sf-card reveal">
       <div class="sf-card-bg"></div>
       <div class="sf-card-svg">
-        <img src="./outils.png" alt="Outils de tailleur de pierre">
+        <picture>
+          <source srcset="./outils.avif" type="image/avif">
+          <source srcset="./outils.webp" type="image/webp">
+          <img src="./outils.webp" alt="Outils de tailleur de pierre" loading="lazy" decoding="async" width="900" height="700">
+        </picture>
       </div>
       <div class="sf-card-overlay">
         <div class="sf-card-num">01</div>
@@ -1165,7 +1182,11 @@
     <div class="sf-card reveal reveal-delay-1">
       <div class="sf-card-bg"></div>
       <div class="sf-card-svg">
-        <img src="./geste%20technique.png" alt="Geste technique de taille de pierre">
+        <picture>
+          <source srcset="./geste%20technique.avif" type="image/avif">
+          <source srcset="./geste%20technique.webp" type="image/webp">
+          <img src="./geste%20technique.webp" alt="Geste technique de taille de pierre" loading="lazy" decoding="async" width="900" height="700">
+        </picture>
       </div>
       <div class="sf-card-overlay">
         <div class="sf-card-num">02</div>
@@ -1178,7 +1199,11 @@
     <div class="sf-card wide reveal reveal-delay-2">
       <div class="sf-card-bg" style="background: radial-gradient(ellipse at 30% 60%, #5a4830 0%, #2e2418 50%, #1a1410 100%)"></div>
       <div class="sf-card-svg">
-        <img src="./l%20atelier.png" alt="Atelier de taille de pierre">
+        <picture>
+          <source srcset="./l%20atelier.avif" type="image/avif">
+          <source srcset="./l%20atelier.webp" type="image/webp">
+          <img src="./l%20atelier.webp" alt="Atelier de taille de pierre" loading="lazy" decoding="async" width="1200" height="700">
+        </picture>
       </div>
       <div class="sf-card-overlay">
         <div class="sf-card-num">03</div>
@@ -1210,7 +1235,11 @@
     <div class="port-item reveal" data-cat="architecture">
       <div class="port-bg"></div>
       <div class="port-icon">
-        <img src="./bloc.png" alt="Bloc de pierre">
+        <picture>
+          <source srcset="./bloc.avif" type="image/avif">
+          <source srcset="./bloc.webp" type="image/webp">
+          <img src="./bloc.webp" alt="Bloc de pierre" loading="lazy" decoding="async" width="700" height="700">
+        </picture>
       </div>
       <div class="port-overlay">
         <div class="port-cat">Architecture & Rénovation</div>
@@ -1222,7 +1251,11 @@
     <div class="port-item reveal reveal-delay-1" data-cat="decoration">
       <div class="port-bg"></div>
       <div class="port-icon">
-        <img src="./renov%20avant%20apres.png" alt="Rénovation avant après">
+        <picture>
+          <source srcset="./renov%20avant%20apres.avif" type="image/avif">
+          <source srcset="./renov%20avant%20apres.webp" type="image/webp">
+          <img src="./renov%20avant%20apres.webp" alt="Rénovation avant après" loading="lazy" decoding="async" width="700" height="700">
+        </picture>
       </div>
       <div class="port-overlay">
         <div class="port-cat">Décoration Intérieure</div>
@@ -1234,7 +1267,11 @@
     <div class="port-item reveal reveal-delay-2" data-cat="art">
       <div class="port-bg"></div>
       <div class="port-icon">
-        <img src="./sculpture.png" alt="Sculpture en pierre">
+        <picture>
+          <source srcset="./sculpture.avif" type="image/avif">
+          <source srcset="./sculpture.webp" type="image/webp">
+          <img src="./sculpture.webp" alt="Sculpture en pierre" loading="lazy" decoding="async" width="700" height="700">
+        </picture>
       </div>
       <div class="port-overlay">
         <div class="port-cat">Art & Sculpture</div>
@@ -1246,7 +1283,11 @@
     <div class="port-item reveal reveal-delay-1" data-cat="exterieur">
       <div class="port-bg"></div>
       <div class="port-icon">
-        <img src="./jardin%20exterieur.png" alt="Aménagement extérieur en pierre">
+        <picture>
+          <source srcset="./jardin%20exterieur.avif" type="image/avif">
+          <source srcset="./jardin%20exterieur.webp" type="image/webp">
+          <img src="./jardin%20exterieur.webp" alt="Aménagement extérieur en pierre" loading="lazy" decoding="async" width="700" height="700">
+        </picture>
       </div>
       <div class="port-overlay">
         <div class="port-cat">Aménagement Extérieur</div>
@@ -1258,7 +1299,11 @@
     <div class="port-item reveal reveal-delay-2" data-cat="architecture">
       <div class="port-bg"></div>
       <div class="port-icon">
-        <img src="./interrieur.png" alt="Aménagement intérieur en pierre">
+        <picture>
+          <source srcset="./interrieur.avif" type="image/avif">
+          <source srcset="./interrieur.webp" type="image/webp">
+          <img src="./interrieur.webp" alt="Aménagement intérieur en pierre" loading="lazy" decoding="async" width="700" height="700">
+        </picture>
       </div>
       <div class="port-overlay">
         <div class="port-cat">Architecture</div>
@@ -1273,7 +1318,11 @@
   <div class="about-portrait reveal">
     <div class="portrait-frame">
       <div class="portrait-placeholder">
-        <img src="./porttrait%20artisant.png" alt="Portrait de l’artisan tailleur de pierre">
+        <picture>
+          <source srcset="./porttrait%20artisant.avif" type="image/avif">
+          <source srcset="./porttrait%20artisant.webp" type="image/webp">
+          <img src="./porttrait%20artisant.webp" alt="Portrait de l’artisan tailleur de pierre" loading="lazy" decoding="async" width="900" height="1200">
+        </picture>
       </div>
       <div class="portrait-badge">
         Jean-Marc Aubert

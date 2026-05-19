@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Électricité Bordelaise – Rénovation & Installation</title>
+<link rel="preload" as="image" href="comionette.avif" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -109,7 +110,14 @@
   .hero-img {
     position: absolute;
     inset: 0;
-    background: url('comionette.png') center/cover no-repeat;
+    background: url('comionette.webp') center/cover no-repeat;
+    background-image: image-set(
+      url('comionette.avif') type('image/avif'),
+      url('comionette.webp') type('image/webp')
+    );
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 
   .hero-overlay {
@@ -778,23 +786,43 @@
   </div>
   <div class="photos-grid">
     <div class="photo-item tall reveal">
-      <img src="comionette.png" alt="Chantier neuf Bordeaux">
+      <picture>
+        <source srcset="comionette.avif" type="image/avif">
+        <source srcset="comionette.webp" type="image/webp">
+        <img src="comionette.webp" alt="Chantier neuf Bordeaux" loading="lazy" decoding="async" width="1200" height="900">
+      </picture>
       <div class="photo-overlay"><span class="photo-label">Construction neuve</span></div>
     </div>
     <div class="photo-item reveal">
-      <img src="geste%20technique.png" alt="Câblage tableau">
+      <picture>
+        <source srcset="geste%20technique.avif" type="image/avif">
+        <source srcset="geste%20technique.webp" type="image/webp">
+        <img src="geste%20technique.webp" alt="Câblage tableau" loading="lazy" decoding="async" width="900" height="700">
+      </picture>
       <div class="photo-overlay"><span class="photo-label">Tableau électrique</span></div>
     </div>
     <div class="photo-item reveal">
-      <img src="modernite%20smartphone%20qui%20controle%20lumiere.png" alt="Domotique">
+      <picture>
+        <source srcset="modernite%20smartphone%20qui%20controle%20lumiere.avif" type="image/avif">
+        <source srcset="modernite%20smartphone%20qui%20controle%20lumiere.webp" type="image/webp">
+        <img src="modernite%20smartphone%20qui%20controle%20lumiere.webp" alt="Domotique" loading="lazy" decoding="async" width="900" height="700">
+      </picture>
       <div class="photo-overlay"><span class="photo-label">Domotique</span></div>
     </div>
     <div class="photo-item reveal">
-      <img src="tableau%20elec.png" alt="Tableau électrique">
+      <picture>
+        <source srcset="tableau%20elec.avif" type="image/avif">
+        <source srcset="tableau%20elec.webp" type="image/webp">
+        <img src="tableau%20elec.webp" alt="Tableau électrique" loading="lazy" decoding="async" width="900" height="700">
+      </picture>
       <div class="photo-overlay"><span class="photo-label">Installation complète</span></div>
     </div>
     <div class="photo-item reveal">
-      <img src="hero.png" alt="Électricien expert">
+      <picture>
+        <source srcset="hero.avif" type="image/avif">
+        <source srcset="hero.webp" type="image/webp">
+        <img src="hero.webp" alt="Électricien expert" loading="lazy" decoding="async" width="900" height="700">
+      </picture>
       <div class="photo-overlay"><span class="photo-label">Expertise terrain</span></div>
     </div>
   </div>
@@ -805,7 +833,11 @@
 <!-- ABOUT -->
 <section class="about-section" id="about">
   <div class="about-img-wrap reveal">
-    <img src="hero.png" alt="Électricien Bordelais">
+    <picture>
+      <source srcset="hero.avif" type="image/avif">
+      <source srcset="hero.webp" type="image/webp">
+      <img src="hero.webp" alt="Électricien Bordelais" loading="lazy" decoding="async" width="1200" height="1600">
+    </picture>
     <div class="about-accent">
       15<small>ans d'expérience</small>
     </div>

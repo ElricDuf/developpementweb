@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Boulangerie du Coin</title>
+    <link rel="preload" as="image" href="ambiance%20boulangerie.avif" fetchpriority="high" />
     <link href="styles.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +26,11 @@
         </button>
       </div>
       <div class="hero">
-        <img src="ambiance%20boulangerie.png" alt="Intérieur de la boulangerie" />
+        <picture>
+          <source srcset="ambiance%20boulangerie.avif" type="image/avif">
+          <source srcset="ambiance%20boulangerie.webp" type="image/webp">
+          <img src="ambiance%20boulangerie.webp" alt="Intérieur de la boulangerie" fetchpriority="high" width="1600" height="900" />
+        </picture>
         <div class="hero-text">
           <h2>Pain artisanal, pâtisseries maison</h2>
           <p>Des recettes traditionnelles, cuites chaque matin.</p>
@@ -45,8 +50,16 @@
         <h2>Notre histoire</h2>
         <p>La Boulangerie du Coin est une boulangerie artisanale fictive qui célèbre le goût et le savoir‑faire traditionnel. Nous utilisons de la farine de qualité et levains naturels pour des pains riches en saveurs.</p>
         <div class="about-grid">
-          <img src="gros%20plan%20baguette%20tradition.png" alt="Gros plan baguette tradition" />
-          <img src="main%20qui%20petrissent.png" alt="Mains pétrissant la pâte" />
+          <picture>
+          <source srcset="gros%20plan%20baguette%20tradition.avif" type="image/avif">
+          <source srcset="gros%20plan%20baguette%20tradition.webp" type="image/webp">
+          <img src="gros%20plan%20baguette%20tradition.webp" alt="Gros plan baguette tradition" loading="lazy" decoding="async" width="900" height="600" />
+          </picture>
+          <picture>
+          <source srcset="main%20qui%20petrissent.avif" type="image/avif">
+          <source srcset="main%20qui%20petrissent.webp" type="image/webp">
+          <img src="main%20qui%20petrissent.webp" alt="Mains pétrissant la pâte" loading="lazy" decoding="async" width="900" height="600" />
+          </picture>
         </div>
       </section>
 
@@ -54,27 +67,47 @@
         <h2>Nos spécialités</h2>
         <div class="cards">
           <article class="card">
-            <img src="baguette.png" alt="Baguette" />
+            <picture>
+              <source srcset="baguette.avif" type="image/avif">
+              <source srcset="baguette.webp" type="image/webp">
+              <img src="baguette.webp" alt="Baguette" loading="lazy" decoding="async" width="600" height="450" />
+            </picture>
             <h3>Baguette tradition</h3>
             <p>Croustillante à l'extérieur, moelleuse à l'intérieur.</p>
           </article>
           <article class="card">
-            <img src="pain%20au%20choc.png" alt="Pain au chocolat" />
+            <picture>
+              <source srcset="pain%20au%20choc.avif" type="image/avif">
+              <source srcset="pain%20au%20choc.webp" type="image/webp">
+              <img src="pain%20au%20choc.webp" alt="Pain au chocolat" loading="lazy" decoding="async" width="600" height="450" />
+            </picture>
             <h3>Pain au chocolat</h3>
             <p>Feuilletage beurré, cœur chocolaté.</p>
           </article>
           <article class="card">
-            <img src="chouquette.png" alt="Chouquette" />
+            <picture>
+              <source srcset="chouquette.avif" type="image/avif">
+              <source srcset="chouquette.webp" type="image/webp">
+              <img src="chouquette.webp" alt="Chouquette" loading="lazy" decoding="async" width="600" height="450" />
+            </picture>
             <h3>Chouquette</h3>
             <p>Légère et saupoudrée de sucre perlé.</p>
           </article>
           <article class="card">
-            <img src="sandwish.png" alt="Sandwich" />
+            <picture>
+              <source srcset="sandwish.avif" type="image/avif">
+              <source srcset="sandwish.webp" type="image/webp">
+              <img src="sandwish.webp" alt="Sandwich" loading="lazy" decoding="async" width="600" height="450" />
+            </picture>
             <h3>Sandwichs maison</h3>
             <p>Pains frais garnis avec soin.</p>
           </article>
           <article class="card">
-            <img src="tartellette%20fruit.png" alt="Tartelette aux fruits" />
+            <picture>
+              <source srcset="tartellette%20fruit.avif" type="image/avif">
+              <source srcset="tartellette%20fruit.webp" type="image/webp">
+              <img src="tartellette%20fruit.webp" alt="Tartelette aux fruits" loading="lazy" decoding="async" width="600" height="450" />
+            </picture>
             <h3>Tartelette aux fruits</h3>
             <p>Fruits frais et crème légère.</p>
           </article>
@@ -85,12 +118,20 @@
         <h2>Comment nous travaillons</h2>
         <div class="process-grid">
           <div>
-            <img src="pain%20qui%20cuit.png" alt="Pain qui cuit" />
+            <picture>
+              <source srcset="pain%20qui%20cuit.avif" type="image/avif">
+              <source srcset="pain%20qui%20cuit.webp" type="image/webp">
+              <img src="pain%20qui%20cuit.webp" alt="Pain qui cuit" loading="lazy" decoding="async" width="900" height="600" />
+            </picture>
             <h4>Cuisson lente</h4>
             <p>Nos pains cuisent lentement pour développer la croûte et les arômes.</p>
           </div>
           <div>
-            <img src="main%20qui%20petrissent.png" alt="Pétrissage" />
+            <picture>
+              <source srcset="main%20qui%20petrissent.avif" type="image/avif">
+              <source srcset="main%20qui%20petrissent.webp" type="image/webp">
+              <img src="main%20qui%20petrissent.webp" alt="Pétrissage" loading="lazy" decoding="async" width="900" height="600" />
+            </picture>
             <h4>Pétrissage à la main</h4>
             <p>Des gestes précis pour une mie harmonieuse.</p>
           </div>
@@ -99,7 +140,11 @@
 
       <section id="team" class="wrap team">
         <h2>Notre équipe</h2>
-        <img src="photo%20enployes.png" alt="Photo des employés" />
+        <picture>
+          <source srcset="photo%20enployes.avif" type="image/avif">
+          <source srcset="photo%20enployes.webp" type="image/webp">
+          <img src="photo%20enployes.webp" alt="Photo des employés" loading="lazy" decoding="async" width="1200" height="700" />
+        </picture>
         <p>Une petite équipe passionnée, dédiée au bon pain.</p>
       </section>
 
@@ -117,7 +162,11 @@
             <div id="formStatus" aria-live="polite" class="form-status" style="display:none"></div>
           </form>
           <div class="hours">
-            <img src="ardoise%20horaire.png" alt="Ardoise horaires" />
+            <picture>
+              <source srcset="ardoise%20horaire.avif" type="image/avif">
+              <source srcset="ardoise%20horaire.webp" type="image/webp">
+              <img src="ardoise%20horaire.webp" alt="Ardoise horaires" loading="lazy" decoding="async" width="700" height="500" />
+            </picture>
             <p>Du mardi au dimanche — 7h00 à 19h00</p>
             <p>Fermé le lundi</p>
           </div>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Création et refonte de sites web vitrine pour petits commerces - Elric Dufresne">
     <title>Elric Dufresne - Développeur Web</title>
+    <link rel="preload" as="image" href="pexels-markusspiske-6190327.avif" fetchpriority="high">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -67,7 +68,11 @@
                     </div>
                     <div class="about-image">
                         <div class="profile-card">
-                            <img src="photoElric.jpg" alt="Photo Elric" class="profile-photo">
+                            <picture>
+                                <source srcset="photoElric.avif" type="image/avif">
+                                <source srcset="photoElric.webp" type="image/webp">
+                                <img src="photoElric.webp" alt="Photo Elric" class="profile-photo" loading="lazy" decoding="async" width="700" height="800">
+                            </picture>
                         </div>
                     </div>
                 </div>
@@ -80,7 +85,7 @@
         <div class="container">
             <h2>Mes Services</h2>
             <p class="section-subtitle">Des solutions adaptées à vos besoins</p>
-            <p class="services-price">Tarif de prestation : <strong>50 € le site web</strong></p>
+            <p class="services-price">Tarif de prestation : <strong>100 € le site web</strong></p>
             
             <div class="services-grid">
                 <div class="service-card">
@@ -144,7 +149,11 @@
                 <div class="portfolio-item portfolio-item--featured">
                     <a class="portfolio-link" href="boulangerie/index.html" target="_blank" rel="noopener noreferrer">
                         <div class="portfolio-image portfolio-image--photo">
-                            <img src="boulangerie/ambiance boulangerie.png" alt="Aperçu du site Boulangerie du Coin">
+                            <picture>
+                                <source srcset="boulangerie/ambiance boulangerie.avif" type="image/avif">
+                                <source srcset="boulangerie/ambiance boulangerie.webp" type="image/webp">
+                                <img src="boulangerie/ambiance boulangerie.webp" alt="Aperçu du site Boulangerie du Coin" loading="lazy" decoding="async" width="1200" height="700">
+                            </picture>
                         </div>
                         <h3>Boulangerie du Coin</h3>
                         <p>Site vitrine fictif pour une boulangerie artisanale</p>
@@ -154,7 +163,11 @@
                 <div class="portfolio-item portfolio-item--featured">
                     <a class="portfolio-link" href="tailleurdepierre/index.html" target="_blank" rel="noopener noreferrer">
                         <div class="portfolio-image portfolio-image--photo">
-                            <img src="tailleurdepierre/bloc.png" alt="Aperçu du site Tailleur de Pierre">
+                            <picture>
+                                <source srcset="tailleurdepierre/bloc.avif" type="image/avif">
+                                <source srcset="tailleurdepierre/bloc.webp" type="image/webp">
+                                <img src="tailleurdepierre/bloc.webp" alt="Aperçu du site Tailleur de Pierre" loading="lazy" decoding="async" width="1200" height="700">
+                            </picture>
                         </div>
                         <h3>Atelier Morel - Tailleur de Pierre</h3>
                         <p>Site vitrine élégant pour un maître tailleur de pierre</p>
@@ -164,7 +177,11 @@
                 <div class="portfolio-item">
                     <a class="portfolio-link" href="electricien/index.html" target="_blank" rel="noopener noreferrer">
                         <div class="portfolio-image portfolio-image--photo">
-                            <img src="electricien/hero.png" alt="Aperçu du site Électricien">
+                            <picture>
+                                <source srcset="electricien/hero.avif" type="image/avif">
+                                <source srcset="electricien/hero.webp" type="image/webp">
+                                <img src="electricien/hero.webp" alt="Aperçu du site Électricien" loading="lazy" decoding="async" width="1200" height="700">
+                            </picture>
                         </div>
                         <h3>Électricien - Services</h3>
                         <p>Site vitrine présentant prestations, réalisations et contact</p>

@@ -168,7 +168,16 @@ a:hover {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('pexels-markusspiske-6190327.jpg') center/cover no-repeat;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('pexels-markusspiske-6190327.webp') center/cover no-repeat;
+    background-image:
+        linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        image-set(
+            url('pexels-markusspiske-6190327.avif') type('image/avif'),
+            url('pexels-markusspiske-6190327.webp') type('image/webp')
+        );
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     color: white;
     padding: 100px 0;
     min-height: 600px;
